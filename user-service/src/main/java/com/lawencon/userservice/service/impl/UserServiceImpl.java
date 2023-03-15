@@ -14,12 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lawencon.core.constant.ResponseConst;
-import com.lawencon.core.constant.SystemConst;
 import com.lawencon.core.dao.impl.BaseDaoImpl;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
+import com.lawencon.core.util.AuthenticationUtil;
 import com.lawencon.userservice.dao.declaration.RoleDao;
 import com.lawencon.userservice.dao.declaration.UserDao;
 import com.lawencon.userservice.dto.user.UserDataDto;
@@ -36,6 +36,9 @@ public class UserServiceImpl extends BaseDaoImpl implements UserService, UserDet
 
 	@Autowired
 	private RoleDao roleDao;
+
+	@Autowired
+	private AuthenticationUtil authenticationUtil;
 	
 	@Autowired
 	private PasswordEncoder passwordEncode;
@@ -66,7 +69,7 @@ public class UserServiceImpl extends BaseDaoImpl implements UserService, UserDet
             user.setPassword(hash);
 			final Optional<Role> role = roleDao.getById(data.getRole());
             user.setRole(role.get());
-			user.setCreatedBy(SystemConst.PRINCIPAL.getName());
+			user.setCreatedBy(authenticationUtil.getPrincipal().getId());
 			final User insertOne = userDao.insert(user);
 			final InsertResDto responseDb = new InsertResDto();
 			responseDb.setId(insertOne.getId());

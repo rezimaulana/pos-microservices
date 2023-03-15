@@ -1,4 +1,4 @@
-package com.lawencon.userservice.security;
+package com.lawencon.productservice.security;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lawencon.core.util.JwtUtil;
 import com.lawencon.userservice.dto.login.LoginReqDto;
 import com.lawencon.userservice.dto.login.LoginResDto;
 import com.lawencon.userservice.model.User;
+import com.lawencon.userservice.service.declaration.JwtService;
 import com.lawencon.userservice.service.declaration.UserService;
 
 @RestController
@@ -31,7 +31,7 @@ public class LoginController {
 	private AuthenticationManager authManager;
 	
 	@Autowired
-	private JwtUtil jwtUtil;
+	private JwtService jwtService;
 	
 	@Autowired
 	private UserService userService;
@@ -55,7 +55,7 @@ public class LoginController {
 		dto.setId(user.get().getId());
 		dto.setFullname(user.get().getFullname());
 		dto.setRoleCode(user.get().getRole().getCode());
-		dto.setToken(jwtUtil.generateJwt(claims));
+		dto.setToken(jwtService.generateJwt(claims));
 		return new ResponseEntity<LoginResDto>(dto, HttpStatus.OK);
 	}
 	

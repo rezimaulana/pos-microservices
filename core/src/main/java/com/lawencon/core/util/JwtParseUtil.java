@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 
 @Component
-public class JwtUtil {
+public class JwtParseUtil {
 	
 	private PublicKey decodedPublicKey;
 	
-	public JwtUtil(@Value("${public.key}") String publicKey) {
+	public JwtParseUtil(@Value("${public.key}") String publicKey) {
 		// Decode private and public key from Base64 encoded string
 		byte[] decodedPublicKeyBytes = Base64.getDecoder().decode(publicKey.getBytes(StandardCharsets.UTF_8));
 		try {
@@ -31,6 +31,7 @@ public class JwtUtil {
 	}
 
 	public Map<String, Object> parseJwt(String token) {
+		// return Jwts.parserBuilder().setSigningKey(key.getPublic()).build().parseClaimsJws(token).getBody();
 		return Jwts.parserBuilder().setSigningKey(decodedPublicKey).build().parseClaimsJws(token).getBody();
 	}
 
