@@ -33,6 +33,7 @@ public class ProductController {
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
 	
+	// @PreAuthorize("hasAnyAuthority('RLSYS')")
 	@GetMapping
 	public ResponseEntity<DataResDto<ProductDataDto>> getById(@RequestParam(required = true) final String id){
 		final DataResDto<ProductDataDto> result = productService.getById(id);
