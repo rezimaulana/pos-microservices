@@ -1,6 +1,7 @@
 package com.lawencon.orderservice.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
 import com.lawencon.core.util.AuthenticationUtil;
 import com.lawencon.core.util.GenerateCodeUtil;
+import com.lawencon.core.util.RestTemplateUtil;
 import com.lawencon.orderservice.dao.declaration.OrderDtlDao;
 import com.lawencon.orderservice.dao.declaration.OrderHdrDao;
 import com.lawencon.orderservice.dto.orderdtl.OrderDtlDataDto;
@@ -37,6 +39,9 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
     private GenerateCodeUtil generateCodeUtil;
 
     @Autowired
+    private RestTemplateUtil restTemplateUtil;
+
+    @Autowired
     private AuthenticationUtil authenticationUtil;
 
     @Transactional(rollbackOn = Exception.class)
@@ -44,6 +49,7 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
     public TransactionResDto<InsertResDto> insert(OrderHdrInsertReqDto data) {
         final TransactionResDto<InsertResDto> responseBe = new TransactionResDto<InsertResDto>();
 		try {
+            valInsert(data);
 			final OrderHdr orderHdr = new OrderHdr();
             orderHdr.setTrxCode(generateCodeUtil.generateAlphaNumeric(6));
             orderHdr.setCustomerName(data.getCustomerName());
@@ -51,7 +57,6 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
             orderHdr.setGrandTotal(new BigDecimal(0));
             orderHdr.setCreatedBy(authenticationUtil.getPrincipal().getId());
             final OrderHdr insertOne = orderHdrDao.insert(orderHdr);
-            BigDecimal grandTotal = new BigDecimal( 0);
             for(int i = 0; i<data.getDetail().size(); i++){
                 OrderDtl orderDtl = new OrderDtl();
                 orderDtl.setOrderHdr(orderHdr);
@@ -103,6 +108,8 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
 
     @Override
     public void valFkFound(OrderHdrInsertReqDto data) {
+        restTemplateUtil.get(Map.class, "/users?="+data.getEmployee(), authenticationUtil.getPrincipal().getToken(), "http://localhost:5016");
+        System.out.println("test");
         // final UserType userType = userTypeDao.getByIdAndDetach(UserType.class, data.getUserType().getId());
 		// final Optional<UserType> userTypeOptional = Optional.ofNullable(userType);
 		// if (!userTypeOptional.isPresent()) {
