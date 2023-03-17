@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
-import com.lawencon.orderservice.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.orderservice.service.declaration.OrderService;
 
 @RestController

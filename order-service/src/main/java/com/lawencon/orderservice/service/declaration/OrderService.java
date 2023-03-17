@@ -1,12 +1,12 @@
 package com.lawencon.orderservice.service.declaration;
 
+import com.lawencon.core.dto.orderdtl.OrderDtlDataDto;
+import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
+import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
-import com.lawencon.orderservice.dto.orderdtl.OrderDtlDataDto;
-import com.lawencon.orderservice.dto.orderhdr.OrderHdrDataDto;
-import com.lawencon.orderservice.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.orderservice.model.OrderDtl;
 import com.lawencon.orderservice.model.OrderHdr;
 

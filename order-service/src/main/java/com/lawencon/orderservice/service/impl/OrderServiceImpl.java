@@ -1,7 +1,6 @@
 package com.lawencon.orderservice.service.impl;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.lawencon.core.constant.ResponseConst;
 import com.lawencon.core.dao.impl.BaseDaoImpl;
+import com.lawencon.core.dto.orderdtl.OrderDtlDataDto;
+import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
+import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
@@ -19,9 +21,6 @@ import com.lawencon.core.util.GenerateCodeUtil;
 import com.lawencon.core.util.RestTemplateUtil;
 import com.lawencon.orderservice.dao.declaration.OrderDtlDao;
 import com.lawencon.orderservice.dao.declaration.OrderHdrDao;
-import com.lawencon.orderservice.dto.orderdtl.OrderDtlDataDto;
-import com.lawencon.orderservice.dto.orderhdr.OrderHdrDataDto;
-import com.lawencon.orderservice.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.orderservice.model.OrderDtl;
 import com.lawencon.orderservice.model.OrderHdr;
 import com.lawencon.orderservice.service.declaration.OrderService;
@@ -107,14 +106,30 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
     }
 
     @Override
-    public void valFkFound(OrderHdrInsertReqDto data) {
-        restTemplateUtil.get(Map.class, "/users?="+data.getEmployee(), authenticationUtil.getPrincipal().getToken(), "http://localhost:5016");
-        System.out.println("test");
-        // final UserType userType = userTypeDao.getByIdAndDetach(UserType.class, data.getUserType().getId());
-		// final Optional<UserType> userTypeOptional = Optional.ofNullable(userType);
-		// if (!userTypeOptional.isPresent()) {
-		// 	throw new RuntimeException("User Type Not Found.");
-		// }
+    // @SuppressWarnings({ "rawtypes", "unchecked" })
+    // @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void valFkFound(OrderHdrInsertReqDto data) {  
+        // ResponseEntity<Map> resultUser = restTemplateUtil.get(Map.class, UrlConst.GATEWAY_USER_GET_BY_ID+data.getEmployee(), 
+        //     authenticationUtil.getPrincipal().getToken(), UrlConst.GATEWAY_BASE);
+        // Optional<Map<String, Object>> userOptional = Optional.ofNullable(resultUser.getBody());
+        // if (!userOptional.isPresent()){
+        //     throw new RuntimeException("User Not Found.");
+        // }
+        
+        // Object resultUser = restTemplateUtil.get(Object.class, UrlConst.GATEWAY_USER_GET_BY_ID.getUri()+data.getEmployee(), 
+        // authenticationUtil.getPrincipal().getToken(), UrlConst.GATEWAY_BASE.getUri());
+
+        // ResponseEntity<Map<String, Object>>result = (ResponseEntity<Map<String, Object>>) resultUser;
+        // Map<String, Object> test = result.getBody();
+        // Object getData = test.get("data");
+        // Map<String, Object> hasilAkhir = (Map<String, Object>) getData;
+        // Object id =  hasilAkhir;
+
+        // Optional<Object> userOptional = Optional.ofNullable(resultUser);
+        // if(userOptional.isEmpty()){
+        //     throw new RuntimeException("User Not Found.");
+        // }
+
     }
     
 }

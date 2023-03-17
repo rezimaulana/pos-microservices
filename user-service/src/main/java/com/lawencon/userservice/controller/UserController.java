@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
-import com.lawencon.userservice.dto.user.UserDataDto;
+import com.lawencon.core.dto.user.UserDataDto;
 import com.lawencon.userservice.service.declaration.UserService;
 
 @RestController

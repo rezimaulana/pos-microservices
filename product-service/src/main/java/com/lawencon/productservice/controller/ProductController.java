@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lawencon.core.dto.product.ProductDataDto;
+import com.lawencon.core.dto.product.ProductInsertReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
-import com.lawencon.productservice.dto.product.ProductDataDto;
-import com.lawencon.productservice.dto.product.ProductInsertReqDto;
 import com.lawencon.productservice.service.declaration.ProductService;
 
 @RestController

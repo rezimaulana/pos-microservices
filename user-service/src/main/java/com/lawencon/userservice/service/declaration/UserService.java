@@ -6,8 +6,8 @@ import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
-import com.lawencon.userservice.dto.user.UserDataDto;
-import com.lawencon.userservice.dto.user.UserInsertReqDto;
+import com.lawencon.core.dto.user.UserDataDto;
+import com.lawencon.core.dto.user.UserInsertReqDto;
 import com.lawencon.userservice.model.User;
 
 public interface UserService {

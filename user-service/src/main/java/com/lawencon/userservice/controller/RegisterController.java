@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
-import com.lawencon.userservice.dto.user.UserInsertReqDto;
+import com.lawencon.core.dto.user.UserInsertReqDto;
 import com.lawencon.userservice.service.declaration.UserService;
 
 @RestController

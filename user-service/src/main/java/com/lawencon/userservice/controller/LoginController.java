@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lawencon.userservice.dto.login.LoginReqDto;
-import com.lawencon.userservice.dto.login.LoginResDto;
+import com.lawencon.core.dto.login.LoginReqDto;
+import com.lawencon.core.dto.login.LoginResDto;
 import com.lawencon.userservice.model.User;
 import com.lawencon.userservice.service.declaration.JwtService;
 import com.lawencon.userservice.service.declaration.UserService;
