@@ -20,8 +20,10 @@ public class OrderDtlDaoImpl extends BaseDaoImpl implements OrderDtlDao{
     @Override
     public Optional<OrderDtl> getById(String id) {
         final OrderDtl findOne = this.em.find(OrderDtl.class, id);
-        em.detach(findOne);
         final Optional<OrderDtl> result = Optional.ofNullable(findOne);
+        if(result.isPresent()) {
+            em.detach(findOne);
+        }
         return result;
     }
     

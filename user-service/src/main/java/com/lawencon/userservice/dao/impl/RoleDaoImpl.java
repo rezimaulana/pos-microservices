@@ -14,8 +14,10 @@ public class RoleDaoImpl extends BaseDaoImpl implements RoleDao {
     @Override
     public Optional<Role> getById(String id) {
         final Role findOne = this.em.find(Role.class, id);
-        em.detach(findOne);
         final Optional<Role> result = Optional.ofNullable(findOne);
+        if(result.isPresent()) {
+            em.detach(findOne);
+        }
         return result;
     }
 

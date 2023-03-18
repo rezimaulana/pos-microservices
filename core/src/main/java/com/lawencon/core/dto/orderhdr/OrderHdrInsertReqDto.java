@@ -3,6 +3,7 @@ package com.lawencon.core.dto.orderhdr;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.lawencon.core.dto.orderdtl.OrderDtlInsertReqDto;
@@ -13,7 +14,7 @@ public class OrderHdrInsertReqDto {
     private String customerName;
     @NotBlank
     private String employee;
-    @NotNull
+    @NotEmpty @NotNull
     private List<OrderDtlInsertReqDto> detail;
     
     public String getCustomerName() {

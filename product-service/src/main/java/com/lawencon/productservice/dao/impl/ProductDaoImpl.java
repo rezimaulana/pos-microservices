@@ -30,8 +30,10 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao{
     @Override
     public Optional<Product> getById(String id) {
         final Product findOne = this.em.find(Product.class, id);
-        em.detach(findOne);
         final Optional<Product> result = Optional.ofNullable(findOne);
+        if(result.isPresent()) {
+            em.detach(findOne);
+        }
         return result;
     }
 

@@ -23,8 +23,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     @Override
     public Optional<User> getById(String id) {
         final User findOne = this.em.find(User.class, id);
-        em.detach(findOne);
         final Optional<User> result = Optional.ofNullable(findOne);
+        if(result.isPresent()) {
+            em.detach(findOne);
+        }
         return result;
     }
 

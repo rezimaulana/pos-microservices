@@ -30,8 +30,10 @@ public class OrderHdrDaoImpl extends BaseDaoImpl implements OrderHdrDao{
     @Override
     public Optional<OrderHdr> getById(String id) {
         final OrderHdr findOne = this.em.find(OrderHdr.class, id);
-        em.detach(findOne);
         final Optional<OrderHdr> result = Optional.ofNullable(findOne);
+        if(result.isPresent()) {
+            em.detach(findOne);
+        }
         return result;
     }
 
