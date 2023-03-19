@@ -20,6 +20,7 @@ import com.lawencon.core.dto.orderdtl.OrderDtlInsertReqDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.product.ProductDataDto;
+import com.lawencon.core.dto.product.ProductUpdateReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
@@ -65,10 +66,10 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
             orderHdr.setCreatedBy(authenticationUtil.getPrincipal().getId());
             BigDecimal grandTotal = new BigDecimal(0);
             final List<OrderDtl> listOrderDtl = new ArrayList<>();
-            final List<String> productId = new ArrayList<>();
-            final List<Integer> productQty = new ArrayList<>();
+            final List<ProductUpdateReqDto> listProduct= new ArrayList<>();
             for(int i = 0; i<data.getDetail().size(); i++){
-                OrderDtl orderDtl = new OrderDtl();
+                final OrderDtl orderDtl = new OrderDtl();
+                final ProductUpdateReqDto productDto = new ProductUpdateReqDto();
                 final ResponseEntity<DataResDto<ProductDataDto>> product = valFkFoundProduct(data.getDetail().get(i));
                 final Optional<DataResDto<ProductDataDto>> productBody = Optional.ofNullable(product.getBody());
                 final Optional<ProductDataDto> productData = productBody.map(DataResDto::getData);
@@ -82,22 +83,28 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
                 orderDtl.setSubTotal(subTotal);
                 orderDtl.setCreatedBy(authenticationUtil.getPrincipal().getId());
                 grandTotal = grandTotal.add(subTotal);
-                if(!productId.isEmpty()){
-                    for(int j=0; j<productId.size(); j++){
-                        if(productId.get(j).equals(data.getDetail().get(i).getProduct())){
+                if(!listProduct.isEmpty()){
+                    for(int j=0; j<listProduct.size(); j++){
+                        if(listProduct.get(j).getId().equals(data.getDetail().get(i).getProduct())){
                             throw new RuntimeException("Duplicate Product!");
                         }
                     }
-                    productQty.add(productData.get().getQuantity() - data.getDetail().get(i).getQuantity());
                 }
-                productId.add(data.getDetail().get(i).getProduct());
+                productDto.setId(data.getDetail().get(i).getProduct());
+                productDto.setQuantity(productData.get().getQuantity() - data.getDetail().get(i).getQuantity());
+                productDto.setIsActive(data.getDetail().get(i).getIsActive());
+                productDto.setVer(data.getDetail().get(i).getVer());
                 listOrderDtl.add(orderDtl);
+                listProduct.add(productDto);
             }
             orderHdr.setGrandTotal(grandTotal);
             final OrderHdr insertOne = orderHdrDao.insert(orderHdr);
             for(int i = 0; i<listOrderDtl.size(); i++){
                 listOrderDtl.get(i).setOrderHdr(orderHdr);
                 orderDtlDao.insert(listOrderDtl.get(i));
+            }
+            for(int i = 0; i<listProduct.size(); i++){
+                valUpdateProductQuantity(listProduct.get(i));
             }
 			final InsertResDto responseDb = new InsertResDto();
 			responseDb.setId(insertOne.getId());
@@ -139,17 +146,35 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
     // @SuppressWarnings({ "rawtypes", "unchecked" })
     public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(OrderHdrInsertReqDto data) {  
         // System.out.println(resultUser.getBody().getData().getId());
-        ResponseEntity<DataResDto<UserDataDto>> result = restTemplateUtil.get(new ParameterizedTypeReference<DataResDto<UserDataDto>>() {},
+        final ParameterizedTypeReference<DataResDto<UserDataDto>> entityTypeRef = new ParameterizedTypeReference<DataResDto<UserDataDto>>() {};
+        final ResponseEntity<DataResDto<UserDataDto>> result = restTemplateUtil.get(
+            entityTypeRef,
             UrlConst.GATEWAY_USER_GET_BY_ID.getUri() + data.getEmployee(), 
-            authenticationUtil.getPrincipal().getToken(), UrlConst.GATEWAY_BASE.getUri());
+            authenticationUtil.getPrincipal().getToken(),
+            UrlConst.GATEWAY_BASE.getUri());
         return result;
     }
 
     @Override
     public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(OrderDtlInsertReqDto data) {  
-        ResponseEntity<DataResDto<ProductDataDto>> result = restTemplateUtil.get(new ParameterizedTypeReference<DataResDto<ProductDataDto>>() {},
+        final ParameterizedTypeReference<DataResDto<ProductDataDto>> entityTypeRef = new ParameterizedTypeReference<DataResDto<ProductDataDto>>() {};
+        final ResponseEntity<DataResDto<ProductDataDto>> result = restTemplateUtil.get(
+            entityTypeRef,
             UrlConst.GATEWAY_PRODUCT_GET_BY_ID.getUri() + data.getProduct(), 
-            authenticationUtil.getPrincipal().getToken(), UrlConst.GATEWAY_BASE.getUri());
+            authenticationUtil.getPrincipal().getToken(),
+            UrlConst.GATEWAY_BASE.getUri());
+        return result;
+    }
+
+    @Override
+    public ResponseEntity<ProductUpdateReqDto> valUpdateProductQuantity(ProductUpdateReqDto data) {
+        final ParameterizedTypeReference<ProductUpdateReqDto> entityTypeRef = new ParameterizedTypeReference<ProductUpdateReqDto>() {};
+        final ResponseEntity<ProductUpdateReqDto> result = restTemplateUtil.put(
+            entityTypeRef, 
+            UrlConst.GATEWAY_PRODUCT_UPDATE.getUri(),
+            data,
+            authenticationUtil.getPrincipal().getToken(),
+            UrlConst.GATEWAY_BASE.getUri());
         return result;
     }
 

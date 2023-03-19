@@ -1,24 +1,39 @@
-package com.lawencon.core.dto.orderdtl;
+package com.lawencon.core.dto.product;
+
+import java.math.BigDecimal;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class OrderDtlInsertReqDto {
-
+public class ProductUpdateReqDto {
+    
     @NotBlank
-    private String product;
-    @NotNull
+    private String id;
+    private String name;
+    private BigDecimal price;
     private Integer quantity;
     @NotNull
     private Boolean isActive;
     @NotNull
     private Integer ver;
-    
-    public String getProduct() {
-        return product;
+
+    public String getId() {
+        return id;
     }
-    public void setProduct(String product) {
-        this.product = product;
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public BigDecimal getPrice() {
+        return price;
+    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
     public Integer getQuantity() {
         return quantity;
@@ -38,5 +53,5 @@ public class OrderDtlInsertReqDto {
     public void setVer(Integer ver) {
         this.ver = ver;
     }
-    
+
 }

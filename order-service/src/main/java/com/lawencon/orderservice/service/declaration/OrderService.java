@@ -7,6 +7,7 @@ import com.lawencon.core.dto.orderdtl.OrderDtlInsertReqDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.product.ProductDataDto;
+import com.lawencon.core.dto.product.ProductUpdateReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
@@ -30,6 +31,8 @@ public interface OrderService {
 	public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(OrderHdrInsertReqDto data);
 
 	public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(OrderDtlInsertReqDto data);
+
+	public ResponseEntity<ProductUpdateReqDto> valUpdateProductQuantity(ProductUpdateReqDto data);
 
     // valInsert
 	// valNotNull(data); All required field!

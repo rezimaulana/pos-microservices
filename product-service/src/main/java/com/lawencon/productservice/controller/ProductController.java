@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lawencon.core.dto.product.ProductDataDto;
 import com.lawencon.core.dto.product.ProductInsertReqDto;
+import com.lawencon.core.dto.product.ProductUpdateReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
+import com.lawencon.core.dto.response.UpdateResDto;
 import com.lawencon.productservice.service.declaration.ProductService;
 
 @RestController
@@ -33,6 +36,12 @@ public class ProductController {
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
 	
+	@PutMapping
+	public ResponseEntity<TransactionResDto<UpdateResDto>> update(@RequestBody @Valid final ProductUpdateReqDto data){
+		final TransactionResDto<UpdateResDto> result = productService.update(data);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+
 	// @PreAuthorize("hasAnyAuthority('RLSYS')")
 	@GetMapping
 	public ResponseEntity<DataResDto<ProductDataDto>> getById(@RequestParam(required = true) final String id){

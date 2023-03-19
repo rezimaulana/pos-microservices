@@ -13,10 +13,12 @@ import com.lawencon.core.constant.ResponseConst;
 import com.lawencon.core.dao.impl.BaseDaoImpl;
 import com.lawencon.core.dto.product.ProductDataDto;
 import com.lawencon.core.dto.product.ProductInsertReqDto;
+import com.lawencon.core.dto.product.ProductUpdateReqDto;
 import com.lawencon.core.dto.response.DataListResDto;
 import com.lawencon.core.dto.response.DataResDto;
 import com.lawencon.core.dto.response.InsertResDto;
 import com.lawencon.core.dto.response.TransactionResDto;
+import com.lawencon.core.dto.response.UpdateResDto;
 import com.lawencon.core.util.AuthenticationUtil;
 import com.lawencon.productservice.dao.declaration.ProductDao;
 import com.lawencon.productservice.model.Product;
@@ -49,6 +51,40 @@ public class ProductServiceImpl extends BaseDaoImpl implements ProductService {
 		} catch (Exception e) {
 			responseBe.setMessage(e.getMessage());
 			e.printStackTrace();
+		}
+		return responseBe;
+    }
+
+	@Transactional(rollbackOn = Exception.class)
+    @Override
+    public TransactionResDto<UpdateResDto> update(ProductUpdateReqDto data) {
+        final TransactionResDto<UpdateResDto> responseBe = new TransactionResDto<UpdateResDto>();
+		final Optional<Product> optional = productDao.getById(data.getId());
+		Product updateOne = null;
+		if (optional.isPresent()) {
+			updateOne = optional.get();
+			try {
+				if(data.getName()!=null){
+					updateOne.setName(data.getName());
+				}
+				if(data.getQuantity()!=null){
+					updateOne.setQuantity(data.getQuantity());
+				}
+				if(data.getPrice()!=null){
+					updateOne.setPrice(data.getPrice());
+				}
+				updateOne.setUpdatedBy(authenticationUtil.getPrincipal().getId());
+				updateOne.setIsActive(data.getIsActive());
+				updateOne.setVer(data.getVer());
+				updateOne = productDao.update(updateOne);
+				final UpdateResDto responseDb = new UpdateResDto();
+				responseDb.setVer(updateOne.getVer());
+				responseBe.setData(responseDb);
+				responseBe.setMessage(ResponseConst.UPDATED.getResponse());
+			} catch (Exception e) {
+				responseBe.setMessage(e.getMessage());
+				e.printStackTrace();
+			}
 		}
 		return responseBe;
     }

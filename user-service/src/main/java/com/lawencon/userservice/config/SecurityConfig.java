@@ -16,8 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.lawencon.userservice.security.AuthorizationFilter;
 import com.lawencon.userservice.service.impl.UserServiceImpl;
@@ -55,18 +53,6 @@ public class SecurityConfig {
 			throws Exception {
 		return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(userService)
 				.passwordEncoder(pwd).and().build();
-	}
-
-    @Bean
-	public WebMvcConfigurer webMvcConfigurer() {
-		return new WebMvcConfigurer() {
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:3001")
-						.allowedMethods(HttpMethod.GET.toString(), HttpMethod.POST.toString(),
-								HttpMethod.PUT.toString(), HttpMethod.DELETE.toString());
-				WebMvcConfigurer.super.addCorsMappings(registry);
-			}
-		};
 	}
 	
 }
