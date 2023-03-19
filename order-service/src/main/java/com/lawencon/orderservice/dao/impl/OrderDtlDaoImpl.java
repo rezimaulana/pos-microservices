@@ -1,5 +1,6 @@
 package com.lawencon.orderservice.dao.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,17 @@ public class OrderDtlDaoImpl extends BaseDaoImpl implements OrderDtlDao{
         if(result.isPresent()) {
             em.detach(findOne);
         }
+        return result;
+    }
+
+    @Override
+    public List<OrderDtl> getByOrderHdr(final String id) {
+        final String sql = "SELECT doc FROM OrderDtl doc "
+                + "INNER JOIN FETCH doc.orderHdr hdr "
+                + "WHERE hdr.id = :id ";
+        final List<OrderDtl> result = this.em.createQuery(sql, OrderDtl.class)
+                .setParameter("id", id)
+                .getResultList();
         return result;
     }
     

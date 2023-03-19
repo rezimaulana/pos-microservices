@@ -16,7 +16,6 @@ import com.lawencon.core.constant.ResponseConst;
 import com.lawencon.core.constant.UrlConst;
 import com.lawencon.core.dao.impl.BaseDaoImpl;
 import com.lawencon.core.dto.orderdtl.OrderDtlDataDto;
-import com.lawencon.core.dto.orderdtl.OrderDtlInsertReqDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.product.ProductDataDto;
@@ -61,7 +60,7 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
             final OrderHdr orderHdr = new OrderHdr();
             orderHdr.setTrxCode(generateCodeUtil.generateAlphaNumeric(6));
             orderHdr.setCustomerName(data.getCustomerName());
-            valFkFoundUser(data);
+            valFkFoundUser(data.getEmployee());
             orderHdr.setEmployee(data.getEmployee());
             orderHdr.setCreatedBy(authenticationUtil.getPrincipal().getId());
             BigDecimal grandTotal = new BigDecimal(0);
@@ -70,7 +69,7 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
             for(int i = 0; i<data.getDetail().size(); i++){
                 final OrderDtl orderDtl = new OrderDtl();
                 final ProductUpdateReqDto productDto = new ProductUpdateReqDto();
-                final ResponseEntity<DataResDto<ProductDataDto>> product = valFkFoundProduct(data.getDetail().get(i));
+                final ResponseEntity<DataResDto<ProductDataDto>> product = valFkFoundProduct(data.getDetail().get(i).getProduct());
                 final Optional<DataResDto<ProductDataDto>> productBody = Optional.ofNullable(product.getBody());
                 final Optional<ProductDataDto> productData = productBody.map(DataResDto::getData);
                 final BigDecimal price = productData.map(ProductDataDto::getPrice).orElse(BigDecimal.ZERO);
@@ -120,47 +119,90 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
 
     @Override
     public DataResDto<OrderHdrDataDto> getById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        final Optional<OrderHdr> optional = orderHdrDao.getById(id);
+		OrderHdr findOne = null;
+		if (optional.isPresent()) {
+			findOne = optional.get();
+			final OrderHdrDataDto responseDb = setToDtoOrderHdr(findOne);
+			final DataResDto<OrderHdrDataDto> responseBe = new DataResDto<OrderHdrDataDto>();
+			responseBe.setData(responseDb);
+			return responseBe;
+		} else {
+			throw new RuntimeException("Not found!");
+		}
     }
 
     @Override
     public DataListResDto<OrderHdrDataDto> getAll(Integer page, Integer limit) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        final List<OrderHdrDataDto> responseDb = new ArrayList<>();
+		final List<OrderHdr> find = orderHdrDao.getAll(page, limit);
+		for (int i = 0; i < find.size(); i++) {
+			final OrderHdr orderHdr = find.get(i);
+			final OrderHdrDataDto result = setToDtoOrderHdr(orderHdr);
+			responseDb.add(result);
+		}
+		final DataListResDto<OrderHdrDataDto> responseBe = new DataListResDto<OrderHdrDataDto>();
+		responseBe.setData(responseDb);
+		return responseBe;
     }
 
     @Override
     public OrderHdrDataDto setToDtoOrderHdr(OrderHdr data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setToDtoOrderHdr'");
+        final OrderHdrDataDto dto = new OrderHdrDataDto();
+		dto.setId(data.getId());
+        dto.setTrxCode(data.getTrxCode());
+        dto.setCustomerName(data.getCustomerName());
+        dto.setGrandTotal(data.getGrandTotal());
+        final ResponseEntity<DataResDto<UserDataDto>> employee = valFkFoundUser(data.getEmployee());
+        final Optional<DataResDto<UserDataDto>> employeeBody = Optional.ofNullable(employee.getBody());
+        final Optional<UserDataDto> employeeData = employeeBody.map(DataResDto::getData);
+        employeeData.ifPresent(dto::setEmployee);
+        final List<OrderDtl> listOrderDtl = orderDtlDao.getByOrderHdr(data.getId());
+        final List<OrderDtlDataDto> listOrderDtlDto = new ArrayList<>(); 
+        for(int i = 0; i<listOrderDtl.size(); i++){
+            final OrderDtlDataDto orderDtlDto = setToDtoOrderDtl(listOrderDtl.get(i));
+            listOrderDtlDto.add(orderDtlDto);
+        }
+        dto.setDetail(listOrderDtlDto);
+		dto.setVer(data.getVer());
+		dto.setIsActive(data.getIsActive());
+		return dto;
     }
 
     @Override
     public OrderDtlDataDto setToDtoOrderDtl(OrderDtl data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setToDtoOrderDtl'");
+        final OrderDtlDataDto dto = new OrderDtlDataDto();
+        dto.setId(data.getId());
+        final ResponseEntity<DataResDto<ProductDataDto>> prodcut = valFkFoundProduct(data.getProduct());
+        final Optional<DataResDto<ProductDataDto>> productBody = Optional.ofNullable(prodcut.getBody());
+        final Optional<ProductDataDto> productData = productBody.map(DataResDto::getData);
+        productData.ifPresent(dto::setProduct);
+        dto.setQuantity(data.getQuantity());
+        dto.setSubTotal(data.getSubTotal());
+        dto.setIsActive(data.getIsActive());
+        dto.setVer(data.getVer());
+        return dto;
     }
 
     @Override
     // @SuppressWarnings({ "rawtypes", "unchecked" })
-    public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(OrderHdrInsertReqDto data) {  
+    public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(String id) {  
         // System.out.println(resultUser.getBody().getData().getId());
         final ParameterizedTypeReference<DataResDto<UserDataDto>> entityTypeRef = new ParameterizedTypeReference<DataResDto<UserDataDto>>() {};
         final ResponseEntity<DataResDto<UserDataDto>> result = restTemplateUtil.get(
             entityTypeRef,
-            UrlConst.GATEWAY_USER_GET_BY_ID.getUri() + data.getEmployee(), 
+            UrlConst.GATEWAY_USER_GET_BY_ID.getUri() + id, 
             authenticationUtil.getPrincipal().getToken(),
             UrlConst.GATEWAY_BASE.getUri());
         return result;
     }
 
     @Override
-    public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(OrderDtlInsertReqDto data) {  
+    public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(String id) {  
         final ParameterizedTypeReference<DataResDto<ProductDataDto>> entityTypeRef = new ParameterizedTypeReference<DataResDto<ProductDataDto>>() {};
         final ResponseEntity<DataResDto<ProductDataDto>> result = restTemplateUtil.get(
             entityTypeRef,
-            UrlConst.GATEWAY_PRODUCT_GET_BY_ID.getUri() + data.getProduct(), 
+            UrlConst.GATEWAY_PRODUCT_GET_BY_ID.getUri() + id, 
             authenticationUtil.getPrincipal().getToken(),
             UrlConst.GATEWAY_BASE.getUri());
         return result;

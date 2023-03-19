@@ -1,0 +1,1393 @@
+{
+	"info": {
+		"_postman_id": "9f260b6f-5e14-4e74-b21f-1811074d22ba",
+		"name": "POS Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20867096"
+	},
+	"item": [
+		{
+			"name": "POS-User",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"rsazrm@gmail.com\",\r\n    \"password\" : \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-user}}login",
+							"host": [
+								"{{url-user}}login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"rsazrm@gmail.com\",\r\n    \"password\" : \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-user}}login",
+									"host": [
+										"{{url-user}}login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:33:36 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\n    \"roleCode\": \"RLEMP\",\n    \"token\": \"eyJhbGciOiJSUzI1NiJ9.eyJyb2xlQ29kZSI6IlJMRU1QIiwiaWQiOiJkOTRhOGYxMS1hZTJiLTQwZTItYWVjYS1jOTI4ZGZmNDRiODkiLCJleHAiOjE2NzkyMjkyMTZ9.MIMWZu2uy6GGexFvs1d8Bwmq31MDrKtJjh2RhlIhew3dLN-zf-D246aEQpLEpfQzSN1xWOqVxnNJ52U3Nx86EF97IiBWoC9FAcSQeSNwtZOHPcWSCo6r-Vnu1-tKcGdzqbg1ao1woQAzgebVqtBgCSW_ewmeX6pZW1O0PBn-YfQ44jBNIMUJFmnVUmQDcsqe2H68NZrQl0xdwz83MoX4lLzd_vnLcddc0NlV2kQeur1LQpTnMJKEjn8uPzr_DuGp9clrU3dbVQiTzx84kXj5cvuFcJB0I_qUYFYhQdpzcN0ZvwInL98r1oUVHg0xbldZabDpUR_rjheqW6_RUPtTYg\",\n    \"fullname\": \"Maulana Rezi\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"rifqiiii\",\r\n    \"fullname\" : \"rifqi\",\r\n    \"email\" : \"rifqiiii@gmail.com\",\r\n    \"password\" : \"admin\",\r\n    \"role\": \"d836da5e-a364-43ad-aafd-a38ca9763fd4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-user}}register",
+							"host": [
+								"{{url-user}}register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"rifqiiii\",\r\n    \"fullname\" : \"rifqi\",\r\n    \"email\" : \"rifqiiii@gmail.com\",\r\n    \"password\" : \"admin\",\r\n    \"role\": \"d836da5e-a364-43ad-aafd-a38ca9763fd4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-user}}register",
+									"host": [
+										"{{url-user}}register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=A95471B5288F39D47B8E7DC76EE52ACD; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:33:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"5672a514-3226-4b9b-bb1e-5dbe3d526aad\"\n    },\n    \"message\": \"Created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-user}}users?id=846b92a3-d694-4ca1-a01e-7879ca1887f1",
+							"host": [
+								"{{url-user}}users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "846b92a3-d694-4ca1-a01e-7879ca1887f1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-user}}users?id=846b92a3-d694-4ca1-a01e-7879ca1887f1",
+									"host": [
+										"{{url-user}}users"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "846b92a3-d694-4ca1-a01e-7879ca1887f1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:34:04 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n        \"username\": \"system\",\n        \"email\": \"system@rezimaulana.link\",\n        \"fullname\": \"System\",\n        \"isActive\": true,\n        \"ver\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-user}}users/data?page=1&limit=2",
+							"host": [
+								"{{url-user}}users"
+							],
+							"path": [
+								"data"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-user}}users/data?page=1&limit=2",
+									"host": [
+										"{{url-user}}users"
+									],
+									"path": [
+										"data"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:34:18 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n            \"username\": \"system\",\n            \"email\": \"system@rezimaulana.link\",\n            \"fullname\": \"System\",\n            \"isActive\": true,\n            \"ver\": 0\n        },\n        {\n            \"id\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\n            \"username\": \"rezimaulana\",\n            \"email\": \"rsazrm@gmail.com\",\n            \"fullname\": \"Maulana Rezi\",\n            \"isActive\": true,\n            \"ver\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "POS-Product",
+			"item": [
+				{
+					"name": "insert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Mouse\",\r\n    \"price\" : 12000,\r\n    \"quantity\" : 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-product}}products",
+							"host": [
+								"{{url-product}}products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "insert",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Mouse\",\r\n    \"price\" : 12000,\r\n    \"quantity\" : 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-product}}products",
+									"host": [
+										"{{url-product}}products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:33:07 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"7223f6a7-7a93-4759-892d-286feeab1686\"\n    },\n    \"message\": \"Created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"ca78a409-1c5c-437c-ba33-0ea721250e62\",\r\n    \"name\" : \"Mouse Adem\",\r\n    \"price\" : 12000,\r\n    \"quantity\" : 11,\r\n    \"isActive\" : true,\r\n    \"ver\" : 0 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-product}}products",
+							"host": [
+								"{{url-product}}products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"ca78a409-1c5c-437c-ba33-0ea721250e62\",\r\n    \"name\" : \"Mouse Adem\",\r\n    \"price\" : 12000,\r\n    \"quantity\" : 11,\r\n    \"isActive\" : true,\r\n    \"ver\" : 0 \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-product}}products",
+									"host": [
+										"{{url-product}}products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:32:49 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"ver\": 1\n    },\n    \"message\": \"Updated\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-product}}products?id=846b92a3-d694-4ca1-a01e-7879ca1887f1",
+							"host": [
+								"{{url-product}}products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "846b92a3-d694-4ca1-a01e-7879ca1887f1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-product}}products?id=846b92a3-d694-4ca1-a01e-7879ca1887f1",
+									"host": [
+										"{{url-product}}products"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "846b92a3-d694-4ca1-a01e-7879ca1887f1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:32:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n        \"name\": \"OBH\",\n        \"price\": 10000,\n        \"quantity\": 89,\n        \"isActive\": true,\n        \"ver\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-product}}products/data?page=1&limit=2",
+							"host": [
+								"{{url-product}}products"
+							],
+							"path": [
+								"data"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-product}}products/data?page=1&limit=2",
+									"host": [
+										"{{url-product}}products"
+									],
+									"path": [
+										"data"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=CF42C68F0088CC5DC0CC0DD604452726; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:32:08 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"4612287d-84ce-48ce-ba3f-7edc2af36820\",\n            \"name\": \"Expresso\",\n            \"price\": 15000,\n            \"quantity\": 97,\n            \"isActive\": true,\n            \"ver\": 0\n        },\n        {\n            \"id\": \"d6a79d47-6405-47a8-aae3-6ba12d50c2d0\",\n            \"name\": \"Americano\",\n            \"price\": 23000,\n            \"quantity\": 100,\n            \"isActive\": true,\n            \"ver\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "POS-Order",
+			"item": [
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 3\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-order}}orders",
+							"host": [
+								"{{url-order}}orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "insert",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 3\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 3\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-order}}orders",
+									"host": [
+										"{{url-order}}orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:31:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"553a26c4-eaff-4977-bf06-3b7d37128735\"\n    },\n    \"message\": \"Created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-order}}orders?id=84b6f8ea-f107-4ea3-9514-482e74179f56",
+							"host": [
+								"{{url-order}}orders"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "84b6f8ea-f107-4ea3-9514-482e74179f56"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-order}}orders?id=84b6f8ea-f107-4ea3-9514-482e74179f56",
+									"host": [
+										"{{url-order}}orders"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "84b6f8ea-f107-4ea3-9514-482e74179f56"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=2BCCF7A5730B743F8814C129A5A3A3D1; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:19:43 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"84b6f8ea-f107-4ea3-9514-482e74179f56\",\n        \"trxCode\": \"TRX-2222222\",\n        \"customerName\": \"maria\",\n        \"employee\": {\n            \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n            \"username\": \"system\",\n            \"email\": \"system@rezimaulana.link\",\n            \"fullname\": \"System\",\n            \"isActive\": true,\n            \"ver\": 0\n        },\n        \"grandTotal\": 160500,\n        \"detail\": [\n            {\n                \"id\": \"8c2ce04c-b5ff-44b5-88db-c17741072c10\",\n                \"product\": {\n                    \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n                    \"name\": \"OBH\",\n                    \"price\": 10000,\n                    \"quantity\": 91,\n                    \"isActive\": true,\n                    \"ver\": 3\n                },\n                \"quantity\": 3,\n                \"subTotal\": 30000,\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            {\n                \"id\": \"957f7f21-2205-445d-a534-94d9ce0fe56e\",\n                \"product\": {\n                    \"id\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\n                    \"name\": \"Panadol\",\n                    \"price\": 7500,\n                    \"quantity\": 91,\n                    \"isActive\": true,\n                    \"ver\": 3\n                },\n                \"quantity\": 3,\n                \"subTotal\": 22500,\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            {\n                \"id\": \"fb0d780e-0d51-4d51-b208-4e60ee3c95e9\",\n                \"product\": {\n                    \"id\": \"4612287d-84ce-48ce-ba3f-7edc2af36820\",\n                    \"name\": \"Expresso\",\n                    \"price\": 15000,\n                    \"quantity\": 97,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                \"quantity\": 3,\n                \"subTotal\": 45000,\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            {\n                \"id\": \"bee374a0-6873-4962-94b8-3108facbd85b\",\n                \"product\": {\n                    \"id\": \"888e748b-12be-4525-8ca5-70650f40bb7a\",\n                    \"name\": \"Hot Chocolate\",\n                    \"price\": 21000,\n                    \"quantity\": 97,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                \"quantity\": 3,\n                \"subTotal\": 63000,\n                \"isActive\": true,\n                \"ver\": 0\n            }\n        ],\n        \"isActive\": true,\n        \"ver\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-order}}orders/data?page=1&limit=3",
+							"host": [
+								"{{url-order}}orders"
+							],
+							"path": [
+								"data"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAll",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerName\": \"maria\",\r\n    \"employee\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        },\r\n        {\r\n            \"product\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\r\n            \"quantity\": \"2\",\r\n            \"isActive\": true,\r\n            \"ver\": 0\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-order}}orders/data?page=1&limit=3",
+									"host": [
+										"{{url-order}}orders"
+									],
+									"path": [
+										"data"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 11:30:58 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"84b6f8ea-f107-4ea3-9514-482e74179f56\",\n            \"trxCode\": \"TRX-2222222\",\n            \"customerName\": \"maria\",\n            \"employee\": {\n                \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n                \"username\": \"system\",\n                \"email\": \"system@rezimaulana.link\",\n                \"fullname\": \"System\",\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            \"grandTotal\": 160500,\n            \"detail\": [\n                {\n                    \"id\": \"8c2ce04c-b5ff-44b5-88db-c17741072c10\",\n                    \"product\": {\n                        \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n                        \"name\": \"OBH\",\n                        \"price\": 10000,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 3,\n                    \"subTotal\": 30000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                {\n                    \"id\": \"957f7f21-2205-445d-a534-94d9ce0fe56e\",\n                    \"product\": {\n                        \"id\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\n                        \"name\": \"Panadol\",\n                        \"price\": 7500,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 3,\n                    \"subTotal\": 22500,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                {\n                    \"id\": \"fb0d780e-0d51-4d51-b208-4e60ee3c95e9\",\n                    \"product\": {\n                        \"id\": \"4612287d-84ce-48ce-ba3f-7edc2af36820\",\n                        \"name\": \"Expresso\",\n                        \"price\": 15000,\n                        \"quantity\": 97,\n                        \"isActive\": true,\n                        \"ver\": 0\n                    },\n                    \"quantity\": 3,\n                    \"subTotal\": 45000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                {\n                    \"id\": \"bee374a0-6873-4962-94b8-3108facbd85b\",\n                    \"product\": {\n                        \"id\": \"888e748b-12be-4525-8ca5-70650f40bb7a\",\n                        \"name\": \"Hot Chocolate\",\n                        \"price\": 21000,\n                        \"quantity\": 97,\n                        \"isActive\": true,\n                        \"ver\": 0\n                    },\n                    \"quantity\": 3,\n                    \"subTotal\": 63000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                }\n            ],\n            \"isActive\": true,\n            \"ver\": 0\n        },\n        {\n            \"id\": \"17c66c8b-0d1c-42bd-b95a-4b005d6f6257\",\n            \"trxCode\": \"HH9XZS\",\n            \"customerName\": \"maria\",\n            \"employee\": {\n                \"id\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\n                \"username\": \"rezimaulana\",\n                \"email\": \"rsazrm@gmail.com\",\n                \"fullname\": \"Maulana Rezi\",\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            \"grandTotal\": 35000,\n            \"detail\": [\n                {\n                    \"id\": \"b2d5beed-14f9-4eac-96c8-797e7d22aece\",\n                    \"product\": {\n                        \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n                        \"name\": \"OBH\",\n                        \"price\": 10000,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 2,\n                    \"subTotal\": 20000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                {\n                    \"id\": \"9b8cbb65-e7c5-420e-b3f8-53d603887565\",\n                    \"product\": {\n                        \"id\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\n                        \"name\": \"Panadol\",\n                        \"price\": 7500,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 2,\n                    \"subTotal\": 15000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                }\n            ],\n            \"isActive\": true,\n            \"ver\": 0\n        },\n        {\n            \"id\": \"59a191fc-7922-4a4d-8e1b-de8ffbfdee74\",\n            \"trxCode\": \"NBIYGU\",\n            \"customerName\": \"maria\",\n            \"employee\": {\n                \"id\": \"d94a8f11-ae2b-40e2-aeca-c928dff44b89\",\n                \"username\": \"rezimaulana\",\n                \"email\": \"rsazrm@gmail.com\",\n                \"fullname\": \"Maulana Rezi\",\n                \"isActive\": true,\n                \"ver\": 0\n            },\n            \"grandTotal\": 35000,\n            \"detail\": [\n                {\n                    \"id\": \"7ee3cf4e-98b8-4307-9ec8-100dfe025887\",\n                    \"product\": {\n                        \"id\": \"846b92a3-d694-4ca1-a01e-7879ca1887f1\",\n                        \"name\": \"OBH\",\n                        \"price\": 10000,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 2,\n                    \"subTotal\": 20000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                },\n                {\n                    \"id\": \"ac515b71-3f08-4688-925b-ba1fa6de5d8a\",\n                    \"product\": {\n                        \"id\": \"34924351-7d39-4a7a-a359-e96cb84f78cc\",\n                        \"name\": \"Panadol\",\n                        \"price\": 7500,\n                        \"quantity\": 91,\n                        \"isActive\": true,\n                        \"ver\": 3\n                    },\n                    \"quantity\": 2,\n                    \"subTotal\": 15000,\n                    \"isActive\": true,\n                    \"ver\": 0\n                }\n            ],\n            \"isActive\": true,\n            \"ver\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url-user",
+			"value": "http://localhost:1237/",
+			"type": "string"
+		},
+		{
+			"key": "url-product",
+			"value": "http://localhost:1237/",
+			"type": "string"
+		},
+		{
+			"key": "url-order",
+			"value": "http://localhost:1237/",
+			"type": "string"
+		},
+		{
+			"key": "url-file",
+			"value": "http://localhost:1237/",
+			"type": "string"
+		},
+		{
+			"key": "user",
+			"value": "http://localhost:5016/",
+			"type": "string"
+		},
+		{
+			"key": "product",
+			"value": "http://localhost:5017/",
+			"type": "string"
+		},
+		{
+			"key": "order",
+			"value": "http://localhost:5018/",
+			"type": "string"
+		},
+		{
+			"key": "file",
+			"value": "http://localhost:5019/",
+			"type": "string"
+		}
+	]
+}

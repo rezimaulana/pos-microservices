@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.lawencon.core.dto.orderdtl.OrderDtlDataDto;
+import com.lawencon.core.dto.user.UserDataDto;
 
 public class OrderHdrDataDto {
     
     private String id;
     private String trxCode;
     private String customerName;
-    private String employee;
+    private UserDataDto employee;
     private BigDecimal grandTotal;
     private List<OrderDtlDataDto> detail;
     private Boolean isActive;
@@ -34,10 +35,10 @@ public class OrderHdrDataDto {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-    public String getEmployee() {
+    public UserDataDto getEmployee() {
         return employee;
     }
-    public void setEmployee(String employee) {
+    public void setEmployee(UserDataDto employee) {
         this.employee = employee;
     }
     public BigDecimal getGrandTotal() {

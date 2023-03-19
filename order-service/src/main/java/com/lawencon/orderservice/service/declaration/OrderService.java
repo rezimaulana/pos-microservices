@@ -3,7 +3,6 @@ package com.lawencon.orderservice.service.declaration;
 import org.springframework.http.ResponseEntity;
 
 import com.lawencon.core.dto.orderdtl.OrderDtlDataDto;
-import com.lawencon.core.dto.orderdtl.OrderDtlInsertReqDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrDataDto;
 import com.lawencon.core.dto.orderhdr.OrderHdrInsertReqDto;
 import com.lawencon.core.dto.product.ProductDataDto;
@@ -28,9 +27,9 @@ public interface OrderService {
 
 	public OrderDtlDataDto setToDtoOrderDtl(OrderDtl data);
 
-	public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(OrderHdrInsertReqDto data);
+	public ResponseEntity<DataResDto<UserDataDto>> valFkFoundUser(String id);
 
-	public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(OrderDtlInsertReqDto data);
+	public ResponseEntity<DataResDto<ProductDataDto>> valFkFoundProduct(String id);
 
 	public ResponseEntity<ProductUpdateReqDto> valUpdateProductQuantity(ProductUpdateReqDto data);
 

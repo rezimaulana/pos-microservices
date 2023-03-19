@@ -2,11 +2,12 @@ package com.lawencon.core.dto.orderdtl;
 
 import java.math.BigDecimal;
 
+import com.lawencon.core.dto.product.ProductDataDto;
+
 public class OrderDtlDataDto {
     
     private String id;
-    private String product;
-    private String orderHdr;
+    private ProductDataDto product;
     private Integer quantity;
     private BigDecimal subTotal;
     private Boolean isActive;
@@ -18,17 +19,11 @@ public class OrderDtlDataDto {
     public void setId(String id) {
         this.id = id;
     }
-    public String getProduct() {
+    public ProductDataDto getProduct() {
         return product;
     }
-    public void setProduct(String product) {
+    public void setProduct(ProductDataDto product) {
         this.product = product;
-    }
-    public String getOrderHdr() {
-        return orderHdr;
-    }
-    public void setOrderHdr(String orderHdr) {
-        this.orderHdr = orderHdr;
     }
     public Integer getQuantity() {
         return quantity;
