@@ -6,10 +6,21 @@ services:
       context: ./registry-service
       dockerfile: Dockerfile
     ports:
-      - "1237:8080"
+      - "8761:8761"
+    expose:
+      - "8761"
+    networks:
+      - spring-cloud-network
   gateway-service:
     build:
       context: ./gateway-service
       dockerfile: Dockerfile
     ports:
-      - "8761:8080"
+      - "1237:1237"
+    expose:
+      - "1237"
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+      driver: bridge
