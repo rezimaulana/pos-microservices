@@ -60,8 +60,8 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
             final OrderHdr orderHdr = new OrderHdr();
             orderHdr.setTrxCode(generateCodeUtil.generateAlphaNumeric(6));
             orderHdr.setCustomerName(data.getCustomerName());
-            valFkFoundUser(data.getEmployee());
-            orderHdr.setEmployee(data.getEmployee());
+            valFkFoundUser(authenticationUtil.getPrincipal().getId());
+            orderHdr.setEmployee(authenticationUtil.getPrincipal().getId());
             orderHdr.setCreatedBy(authenticationUtil.getPrincipal().getId());
             BigDecimal grandTotal = new BigDecimal(0);
             final List<OrderDtl> listOrderDtl = new ArrayList<>();

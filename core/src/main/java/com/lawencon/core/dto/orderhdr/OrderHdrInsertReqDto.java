@@ -12,8 +12,6 @@ public class OrderHdrInsertReqDto {
     
     @NotBlank
     private String customerName;
-    @NotBlank
-    private String employee;
     @NotEmpty @NotNull
     private List<OrderDtlInsertReqDto> detail;
     
@@ -22,12 +20,6 @@ public class OrderHdrInsertReqDto {
     }
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
-    }
-    public String getEmployee() {
-        return employee;
-    }
-    public void setEmployee(String employee) {
-        this.employee = employee;
     }
     public List<OrderDtlInsertReqDto> getDetail() {
         return detail;
