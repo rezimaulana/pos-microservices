@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  registry-service:
+    build:
+      context: ./registry-service
+      dockerfile: Dockerfile
+    ports:
+      - "1237:8080"
+  gateway-service:
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8080"
