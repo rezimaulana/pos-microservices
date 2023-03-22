@@ -1,0 +1,13 @@
+FROM maven:3.8.4-openjdk-11-slim AS build
+WORKDIR /app
+COPY core .
+COPY user-service .
+WORKDIR /app/user-service
+RUN mvn dependency:go-offline
+RUN mvn package -DskipTests
+
+FROM openjdk:11-jdk-slim
+EXPOSE 5016
+ARG JAR_FILE=target/*.jar
+COPY --from=build /app/${JAR_FILE} user-service.jar
+ENTRYPOINT ["java","-jar","/user-service.jar"]

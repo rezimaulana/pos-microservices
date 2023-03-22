@@ -9,5 +9,4 @@ FROM openjdk:11-jdk-slim
 EXPOSE 1237
 ARG JAR_FILE=target/*.jar
 COPY --from=build /app/${JAR_FILE} gateway-service.jar
-COPY src/main/resources/application.properties /app/application.properties
 ENTRYPOINT ["java","-jar","/gateway-service.jar"]

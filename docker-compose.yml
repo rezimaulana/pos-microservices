@@ -1,6 +1,42 @@
 version: '3.9'
 
 services:
+  ms_users:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ms_users
+      PGDATA: /data/postgres
+    volumes:
+      - ./volumes/ms_users:/data/postgres
+    networks:
+      - spring-cloud-network
+  ms_products:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ms_products
+      PGDATA: /data/postgres
+    volumes:
+      - ./volumes/ms_products:/data/postgres
+    networks:
+      - spring-cloud-network
+  ms_orders:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ms_orders
+      PGDATA: /data/postgres
+    volumes:
+      - ./volumes/ms_orders:/data/postgres
+    networks:
+      - spring-cloud-network
   registry-service:
     build:
       context: ./registry-service
@@ -21,6 +57,36 @@ services:
       - "1237"
     networks:
       - spring-cloud-network
+  user-service:
+    build:
+      context: ./
+      dockerfile: DockerfileUserService
+    ports:
+      - "5016:5016"
+    expose:
+      - "5016"
+    networks:
+      - spring-cloud-network
+  # product-service:
+  #   build:
+  #     context: ./product-service
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5017:5017"
+  #   expose:
+  #     - "5017"
+  #   networks:
+  #     - spring-cloud-network
+  # order-service:
+  #   build:
+  #     context: ./order-service
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5018:5018"
+  #   expose:
+  #     - "5018"
+  #   networks:
+  #     - spring-cloud-network
 networks:
   spring-cloud-network:
       driver: bridge
