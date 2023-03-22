@@ -67,26 +67,26 @@ services:
       - "5016"
     networks:
       - spring-cloud-network
-  # product-service:
-  #   build:
-  #     context: ./product-service
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "5017:5017"
-  #   expose:
-  #     - "5017"
-  #   networks:
-  #     - spring-cloud-network
-  # order-service:
-  #   build:
-  #     context: ./order-service
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "5018:5018"
-  #   expose:
-  #     - "5018"
-  #   networks:
-  #     - spring-cloud-network
+  product-service:
+    build:
+      context: ./
+      dockerfile: DockerfileProductService
+    ports:
+      - "5017:5017"
+    expose:
+      - "5017"
+    networks:
+      - spring-cloud-network
+  order-service:
+    build:
+      context: ./
+      dockerfile: DockerfileOrderService
+    ports:
+      - "5018:5018"
+    expose:
+      - "5018"
+    networks:
+      - spring-cloud-network
 networks:
   spring-cloud-network:
       driver: bridge
