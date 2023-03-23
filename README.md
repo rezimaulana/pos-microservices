@@ -10,14 +10,14 @@
 <br />
 <div align="center">
 
-<h3 align="center">Parcel Handover</h3>
+<h3 align="center">Point of Sale(Spring Boot Microservices)</h3>
 
   <p align="center">
-    Serah terima barang dari satu driver ke driver lainnya di gudang.
+    Aplikasi penjualan atau sistem penjualan yang digunakan di toko atau bisnis lainnya untuk memproses transaksi pembelian oleh pelanggan.
     <br />
-    <a href="https://github.com/rezimaulana/parcelhandover/issues">Report Bug</a>
+    <a href="https://github.com/rezimaulana/pos-microservices/issues">Report Bug</a>
     ·
-    <a href="https://github.com/rezimaulana/parcelhandover/issues">Request Feature</a>
+    <a href="https://github.com/rezimaulana/pos-microservices/issues">Request Feature</a>
   </p>
 </div>
 
@@ -30,18 +30,16 @@
       <a href="#spesifikasi-aplikasi">Spesifikasi Aplikasi</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation-with-docker">Installation with Docker</a></li>
+        <li><a href="#installation-with-local-ide">Installation with Local IDE</a></li>
       </ul>
     </li>
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#api-warehouse">API Warehouse</a></li>
-        <li><a href="#api-vehicle">API Vehicle</a></li>
         <li><a href="#api-user">API User</a></li>
-        <li><a href="#api-user-vehicle">API User Vehicle</a></li>
-        <li><a href="#api-handover">API Handover</a></li>
-        <li><a href="#api-report">API Report</a></li>
+        <li><a href="#api-product">API Product</a></li>
+        <li><a href="#api-order">API Order</a></li>
       </ul>
     </li>
     <li><a href="#license">License</a></li>
@@ -52,12 +50,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Deskripsi Project
 
-<p>Projek ini memiliki tujuan untuk memantau dan mencatat jumlah barang masuk dan keluar pada gudang logistik.</p>
-<p>Sistem ini akan mengumpulkan data yang akan digunakan untuk tiga hal utama:<br> 
-1. Melacak kehadiran driver gudang, meliputi waktu kedatangan dan waktu keberangkatan<br>
-2. Analisis jumlah paket masuk dan keluar pada gudang<br>
-3. Menilai performa sorting berdasarkan tujuan</p>
-<p>Informasi ini biasanya dicatat secara manual melalui Excel atau melalui query database yang rumit, dan sulit didapatkan terutama pada industri ekspedisi.</p>
+<p>Terintegrasi untuk mengelola stok, inventaris, dan pembayaran. Sistem POS sangat penting dalam menjalankan bisnis karena membantu menghemat waktu, mengurangi kesalahan manusia, dan meningkatkan efisiensi proses penjualan.</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,143 +75,129 @@ Berikut adalah daftar tools dan software yang diperlukan untuk menjalankan aplik
   https://jdk.java.net/archive/
   ``` 
 
-### Installation
+### Installation with Docker
+
+1. Build container aplikasi
+   ```sh
+   sudo docker compose up --build
+   ```
+2. Jalankan aplikasi
+   ```sh
+   sudo docker compose up
+   ```
+3. Mematikan aplikasi
+   ```sh
+   sudo docker compose down
+   ```
+4. Build spesifik microservices
+   ```sh
+   sudo docker compose up --build <nama-service>
+   ```
+
+
+### Installation with Local IDE
 
 1. Clone repository
    ```sh
-   git clone https://github.com/rezimaulana/parcelhandover.git
+   git clone https://github.com/rezimaulana/pos-microservices.git
    ```
 2. Buat database untuk aplikasi
    ```sql
-   CREATE DATABASE parcelhandover;
+   CREATE DATABASE ms_users;
    ```
-3. Modifikasi application.properties jika perlu
+   ```sql
+   CREATE DATABASE ms_products;
+   ```
+   ```sql
+   CREATE DATABASE ms_orders;
+   ```
+3. Modifikasi application.properties dan gunakan #Local
 4. Buka project dan gunakan maven untuk update project
-5. Run App.java
+5. Run App.java melalui IDE dengan file launch.json
 6. Table akan terupdate otomatis pada database
 7. Data init akan insert otomatis pada tabel
-8. http://localhost:5003/swagger-ui/index.html#/
+8. Password default semua user adalah "admin"
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Alur Proses Sistem adalah sebagai berikut:
-1. Kedatangan driver ke gudang
-2. Pembongkaran muatan barang
-3. Input Data Handover Incoming oleh staff
-4. Sorting muatan barang berdasarkan tujuan(sorting-hub to other hub / sorting-hub to delivery)
-5. Input Data Handover Outgoing oleh staff
-6. Loading muatan barang ke driver baru
-7. Keberangkatan driver
+Berikut ini adalah alur POS aplikasi backend dengan user service, order service, dan product service:
 
-### API Warehouse
-API Warehouse memungkinkan Anda untuk input data warehouse yang disimpan dalam sistem. Endpoint berikut tersedia:
-```
-GET /warehouses
-```
-```
-PUT /warehouses
-```
-```
-POST /warehouses
-```
-```
-GET /warehouses/data
-```
-### API Vehicle
-API Vehicle memungkinkan Anda untuk melakukan input data vehicle yang disimpan dalam sistem. Endpoint berikut tersedia:
-```
-GET /vehicles
-```
-```
-PUT /vehicles
-```
-```
-POST /vehicles
-```
-```
-GET /vehicles/data
-```
+1. User Service:<br />
+a. User Service berfungsi untuk mengatur manajemen pengguna seperti login, logout, registrasi, dan manajemen role.<br />
+b. User Service memiliki tiga entitas yaitu User, Role, dan UserRole.<br />
+c. User memiliki atribut seperti id, username, password, name, dan email.<br />
+d. Role memiliki atribut seperti id dan name.<br />
+e. UserRole memiliki atribut seperti id, userId, dan roleId.<br />
+f. User Service terhubung dengan database untuk menyimpan data pengguna dan manajemen role.<br />
+
+2. Order Service:<br />
+a. Order Service berfungsi untuk mengatur manajemen pesanan seperti membuat pesanan, mengubah status pesanan, dan melihat riwayat pesanan.<br />
+b. Order Service memiliki dua entitas yaitu OrderHeader dan OrderDetail.<br />
+c. OrderHeader memiliki atribut seperti id, userId, status, dan totalAmount.<br />
+d. OrderDetail memiliki atribut seperti id, orderId, productId, quantity, dan price.<br />
+e. Order Service terhubung dengan database untuk menyimpan data pesanan.<br />
+
+3. Product Service:<br />
+a. Product Service berfungsi untuk mengatur manajemen produk seperti menambahkan produk, mengubah produk, dan melihat daftar produk.<br />
+b. Product Service memiliki satu entitas yaitu Product.<br />
+c. Product memiliki atribut seperti id, name, description, price, dan stock.<br />
+d. Product Service terhubung dengan database untuk menyimpan data produk.<br />
+
+Alur aplikasi akan terjadi seperti berikut:
+
+1. Pengguna akan login ke aplikasi dengan mengirimkan permintaan login ke User Service.
+2. User Service akan memverifikasi kredensial pengguna dan memberikan token akses.
+3. Pengguna dapat mengakses layanan Order Service dan Product Service dengan menyertakan token akses dalam permintaan.
+4. Pengguna dapat membuat pesanan baru dengan mengirimkan permintaan pembuatan pesanan ke Order Service.
+5. Order Service akan membuat entitas OrderHeader baru dan menyimpannya ke database.
+6. Pengguna dapat menambahkan produk ke dalam pesanan dengan mengirimkan permintaan penambahan produk ke Order Service.
+7. Order Service akan membuat entitas OrderDetail baru dan menyimpannya ke database.
+8. Order Service akan mengambil entitas OrderHeader dan OrderDetail dari database dan mengembalikannya ke pengguna.
+
 ### API User
-API User memungkinkan Anda untuk melakukan input data user yang disimpan dalam sistem. Endpoint berikut tersedia:
-
+API User memungkinkan Anda untuk input data karyawan yang disimpan dalam sistem. Endpoint berikut tersedia:
 ```
 GET /users
 ```
 ```
-PUT /users
+POST /register
 ```
 ```
-POST /users
+POST /login
 ```
 ```
 GET /users/data
 ```
-
-### API User Vehicle
-API User Vehicle memungkinkan Anda untuk input data tabel bridge antara user dan kendaraan yang disimpan dalam sistem. Endpoint berikut tersedia:
-
+### API Product
+API Product memungkinkan Anda untuk melakukan input data dan modifikasi stok produk yang disimpan dalam sistem. Endpoint berikut tersedia:
 ```
-GET /user-vehicle
+GET /products
 ```
 ```
-PUT /user-vehicle
+PUT /products
 ```
 ```
-POST /user-vehicle
-Menggunakan insertMany.
+POST /products
 ```
 ```
-GET /user-vehicle/data
+GET /products/data
 ```
 
-### API Handover
-API Handover memungkinkan Anda untuk melakukan input data handover yang disimpan dalam sistem. Endpoint berikut tersedia:
+### API Order
+API Order memungkinkan Anda untuk input data transaksi untuk disimpan dalam sistem. Endpoint berikut tersedia:
 
 ```
-GET /handover
+GET /orders
 ```
 ```
-PUT /handover
+POST /orders
+Menggunakan insertMany untuk Order Detail.
 ```
 ```
-POST /handover
-```
-```
-DELETE /handover
-```
-```
-GET /handover/data
-```
-
-### API Report
-API Report memungkinkan Anda untuk melihat ringkasan report dari sistem. Endpoint berikut tersedia:
-
-```
-GET /reports/summary
-Mengambil ringkasan laporan secara keseluruhan.
-```
-```
-GET /reports/summary/warehouse
-Mengambil ringkasan laporan berdasarkan warehouse.
-```
-```
-GET /reports/summary/driver
-Mengambil ringkasan laporan berdasarkan driver.
-```
-```
-GET /reports/sorting
-Mengambil laporan rata-rata waktu bongkar(unloading), sorting, dan muat(loading).
-```
-```
-GET /reports/sorting/warehouse
-Mengambil laporan rata-rata waktu bongkar(unloading), sorting, dan muat(loading) berdasarkan warehouse.
-```
-```
-GET /reports/sorting/driver
-Mengambil laporan rata-rata waktu bongkar(unloading), sorting, dan muat(loading) berdasarkan driver.
+GET /orders/data
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -235,21 +214,21 @@ Didistribusikan di bawah Lisensi GPL-3.0. Lihat `LICENSE.txt` untuk informasi le
 
 Maulana Rezi Rosadi - [@rezi_maulana](https://twitter.com/rezi_maulana) - rsazrm@gmail.com
 
-Project Link: [https://github.com/rezimaulana/parcelhandover](https://github.com/rezimaulana/parcelhandover)
+Project Link: [https://github.com/rezimaulana/pos-microservices](https://github.com/rezimaulana/pos-microservices)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/rezimaulana/parcelhandover.svg?style=for-the-badge
-[contributors-url]: https://github.com/rezimaulana/parcelhandover/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/rezimaulana/parcelhandover.svg?style=for-the-badge
-[forks-url]: https://github.com/rezimaulana/parcelhandover/network/members
-[stars-shield]: https://img.shields.io/github/stars/rezimaulana/parcelhandover.svg?style=for-the-badge
-[stars-url]: https://github.com/rezimaulana/parcelhandover/stargazers
-[issues-shield]: https://img.shields.io/github/issues/rezimaulana/parcelhandover.svg?style=for-the-badge
-[issues-url]: https://github.com/rezimaulana/parcelhandover/issues
-[license-shield]: https://img.shields.io/github/license/rezimaulana/parcelhandover.svg?style=for-the-badge
-[license-url]: https://github.com/rezimaulana/parcelhandover/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/rezimaulana/pos-microservices.svg?style=for-the-badge
+[contributors-url]: https://github.com/rezimaulana/pos-microservices/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/rezimaulana/pos-microservices.svg?style=for-the-badge
+[forks-url]: https://github.com/rezimaulana/pos-microservices/network/members
+[stars-shield]: https://img.shields.io/github/stars/rezimaulana/pos-microservices.svg?style=for-the-badge
+[stars-url]: https://github.com/rezimaulana/pos-microservices/stargazers
+[issues-shield]: https://img.shields.io/github/issues/rezimaulana/pos-microservices.svg?style=for-the-badge
+[issues-url]: https://github.com/rezimaulana/pos-microservices/issues
+[license-shield]: https://img.shields.io/github/license/rezimaulana/pos-microservices.svg?style=for-the-badge
+[license-url]: https://github.com/rezimaulana/pos-microservices/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/rezimaulana
