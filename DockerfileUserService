@@ -1,13 +1,16 @@
-FROM maven:3.8.4-openjdk-11-slim AS build
+FROM debian:buster-slim AS build
+RUN apt-get update && apt-get install -y maven
 WORKDIR /app
-COPY core .
-COPY user-service .
-WORKDIR /app/user-service
-RUN mvn dependency:go-offline
-RUN mvn package -DskipTests
+COPY pom.xml .
+COPY core ./core
+COPY user-service ./user-service
+COPY product-service ./product-service
+COPY order-service ./order-service
+WORKDIR /app/
+RUN mvn clean install -DskipTests
 
 FROM openjdk:11-jdk-slim
 EXPOSE 5016
 ARG JAR_FILE=target/*.jar
-COPY --from=build /app/${JAR_FILE} user-service.jar
+COPY --from=build /app/user-service/${JAR_FILE} user-service.jar
 ENTRYPOINT ["java","-jar","/user-service.jar"]

@@ -4,3 +4,4 @@ order-service/target/
 product-service/target/
 registry-service/target/
 user-service/target/
+volumes/
