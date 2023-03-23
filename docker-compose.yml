@@ -60,7 +60,7 @@ services:
   user-service:
     build:
       context: ./
-      dockerfile: DockerfileUserService
+      dockerfile: Dockerfile.user-service
     ports:
       - "5016:5016"
     expose:
@@ -70,7 +70,7 @@ services:
   product-service:
     build:
       context: ./
-      dockerfile: DockerfileProductService
+      dockerfile: Dockerfile.product-service
     ports:
       - "5017:5017"
     expose:
@@ -80,7 +80,7 @@ services:
   order-service:
     build:
       context: ./
-      dockerfile: DockerfileOrderService
+      dockerfile: Dockerfile.order-service
     ports:
       - "5018:5018"
     expose:
