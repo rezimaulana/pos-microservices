@@ -37,6 +37,18 @@ services:
       - ./volumes/ms_orders:/data/postgres
     networks:
       - spring-cloud-network
+  ms_files:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ms_files
+      PGDATA: /data/postgres
+    volumes:
+      - ./volumes/ms_files:/data/postgres
+    networks:
+      - spring-cloud-network
   registry-service:
     build:
       context: ./registry-service
@@ -85,6 +97,16 @@ services:
       - "5018:5018"
     expose:
       - "5018"
+    networks:
+      - spring-cloud-network
+  file-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile.file-service
+    ports:
+      - "5019:5019"
+    expose:
+      - "5019"
     networks:
       - spring-cloud-network
 networks:

@@ -1,13 +1,3 @@
-core/target/
-gateway-service/target/
-order-service/target/
-product-service/target/
-registry-service/target/
-user-service/target/
-file-service/target/
-volumes/
-/.metadata/
-
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -40,4 +30,4 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-# .vscode/
+.vscode/

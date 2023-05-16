@@ -6,6 +6,7 @@ COPY core ./core
 COPY user-service ./user-service
 COPY product-service ./product-service
 COPY order-service ./order-service
+COPY file-service ./file-service
 WORKDIR /app/
 RUN mvn clean install -DskipTests
 

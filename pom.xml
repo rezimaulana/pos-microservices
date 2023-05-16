@@ -28,6 +28,7 @@
 		<module>order-service</module>
 		<module>user-service</module>
 		<module>product-service</module>
+		<module>file-service</module>
 	</modules>
 
 	<build>
