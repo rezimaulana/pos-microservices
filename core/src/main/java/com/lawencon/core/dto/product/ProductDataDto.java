@@ -8,6 +8,7 @@ public class ProductDataDto {
     private String name;
     private BigDecimal price;
     private Integer quantity;
+    private String file;
     private Boolean isActive;
     private Integer ver;
     
@@ -34,6 +35,12 @@ public class ProductDataDto {
     }
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+    public String getFile() {
+        return file;
+    }
+    public void setFile(String file) {
+        this.file = file;
     }
     public Boolean getIsActive() {
         return isActive;

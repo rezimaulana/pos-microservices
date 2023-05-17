@@ -1,5 +1,8 @@
 package com.lawencon.productservice.service.declaration;
 
+import org.springframework.http.ResponseEntity;
+
+import com.lawencon.core.dto.file.FileInsertReqDto;
 import com.lawencon.core.dto.product.ProductDataDto;
 import com.lawencon.core.dto.product.ProductInsertReqDto;
 import com.lawencon.core.dto.product.ProductUpdateReqDto;
@@ -21,5 +24,7 @@ public interface ProductService {
 	public DataListResDto<ProductDataDto> getAll(Integer page, Integer limit);
 
 	public ProductDataDto setToDto(Product data);
+
+	public ResponseEntity<TransactionResDto<InsertResDto>> valInsertFile(FileInsertReqDto data);
 
 }

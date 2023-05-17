@@ -6,6 +6,16 @@ public class DataListResDto<T> {
     
     private List<T> data;
 
+	private Integer count;
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
 	public List<T> getData() {
 		return data;
 	}

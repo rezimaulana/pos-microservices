@@ -26,6 +26,9 @@ public class Product extends BaseEntity {
 	@Column(name = "price", nullable = false)
 	private BigDecimal price;
 	
+	@Column(name = "file_id", nullable = true)
+	private String file;
+
 	public String getName() {
 		return name;
 	}
@@ -48,6 +51,14 @@ public class Product extends BaseEntity {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 }

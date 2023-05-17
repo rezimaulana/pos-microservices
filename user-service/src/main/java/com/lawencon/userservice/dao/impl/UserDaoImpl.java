@@ -1,5 +1,6 @@
 package com.lawencon.userservice.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,5 +51,14 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		final Optional<User> result = Optional.ofNullable(findOne);
 		return result;
 	}
+
+    @Override
+    public Integer countAll(){
+        final String sql = "SELECT COUNT(*) FROM users doc ";
+        final Query query = this.em.createNativeQuery(sql);
+        BigInteger countData = (BigInteger) query.getSingleResult();
+		Integer count = countData.intValue();
+		return count;
+    }
 
 }

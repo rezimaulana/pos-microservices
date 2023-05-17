@@ -32,11 +32,11 @@ public class RestTemplateUtil {
 		return restTemplate.exchange(req, entityTypeRef);
 	}	
 
-	public <E> ResponseEntity<E> post(ParameterizedTypeReference<E> entityTypeRef, String pathUrl, E body, String baseURL) {
+	public <E,F> ResponseEntity<F> post(ParameterizedTypeReference<F> entityTypeRef, String pathUrl, E body, String baseURL) {
 		return post(entityTypeRef, pathUrl, body, authenticationUtil.getPrincipal().getToken(), baseURL);
 	}
 
-	public <E> ResponseEntity<E> post(ParameterizedTypeReference<E> entityTypeRef, String pathUrl, E body, String token, String baseURL) {
+	public <E,F> ResponseEntity<F> post(ParameterizedTypeReference<F> entityTypeRef, String pathUrl, E body, String token, String baseURL) {
 		final var headers = new HttpHeaders();
 		headers.setBearerAuth(token);
 

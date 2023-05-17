@@ -13,6 +13,8 @@ public class ProductInsertReqDto {
     private BigDecimal price;
     @NotNull
     private Integer quantity;
+    private String encode;
+    private String extension;
 
     public String getName() {
         return name;
@@ -31,6 +33,18 @@ public class ProductInsertReqDto {
     }
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+    public String getEncode() {
+        return encode;
+    }
+    public void setEncode(String encode) {
+        this.encode = encode;
+    }
+    public String getExtension() {
+        return extension;
+    }
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
 }

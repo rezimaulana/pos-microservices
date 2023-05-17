@@ -12,6 +12,8 @@ public class ProductUpdateReqDto {
     private String name;
     private BigDecimal price;
     private Integer quantity;
+    private String encode;
+    private String extension;
     @NotNull
     private Boolean isActive;
     @NotNull
@@ -40,6 +42,18 @@ public class ProductUpdateReqDto {
     }
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+    public String getEncode() {
+        return encode;
+    }
+    public void setEncode(String encode) {
+        this.encode = encode;
+    }
+    public String getExtension() {
+        return extension;
+    }
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
     public Boolean getIsActive() {
         return isActive;

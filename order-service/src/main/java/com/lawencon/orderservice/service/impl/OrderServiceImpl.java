@@ -142,7 +142,8 @@ public class OrderServiceImpl extends BaseDaoImpl implements OrderService {
 			responseDb.add(result);
 		}
 		final DataListResDto<OrderHdrDataDto> responseBe = new DataListResDto<OrderHdrDataDto>();
-		responseBe.setData(responseDb);
+		responseBe.setCount(orderHdrDao.countAll());
+        responseBe.setData(responseDb);
 		return responseBe;
     }
 

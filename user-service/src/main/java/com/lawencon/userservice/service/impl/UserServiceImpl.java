@@ -107,6 +107,7 @@ public class UserServiceImpl extends BaseDaoImpl implements UserService, UserDet
 			responseDb.add(result);
 		}
 		final DataListResDto<UserDataDto> responseBe = new DataListResDto<UserDataDto>();
+		responseBe.setCount(userDao.countAll());
 		responseBe.setData(responseDb);
 		return responseBe;
     }

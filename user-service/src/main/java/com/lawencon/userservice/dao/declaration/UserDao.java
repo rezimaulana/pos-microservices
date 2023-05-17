@@ -13,4 +13,6 @@ public interface UserDao {
     public List<User> getAll(Integer page, Integer limit);
 
     public Optional<User> getByEmail(final String email);
+
+    public Integer countAll();
 }

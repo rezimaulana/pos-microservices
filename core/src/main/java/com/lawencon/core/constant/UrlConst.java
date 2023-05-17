@@ -5,7 +5,8 @@ public enum UrlConst {
     GATEWAY_BASE("http://gateway-service"),
     GATEWAY_USER_GET_BY_ID("/users?id="),
 	GATEWAY_PRODUCT_GET_BY_ID("/products?id="),
-	GATEWAY_PRODUCT_UPDATE("/products");
+	GATEWAY_PRODUCT_UPDATE("/products"),
+	GATEWAY_FILE_INSERT("/files");
 
 	private final String uri;
 	

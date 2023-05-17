@@ -1,5 +1,6 @@
 package com.lawencon.orderservice.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,15 @@ public class OrderHdrDaoImpl extends BaseDaoImpl implements OrderHdrDao{
         query.setMaxResults(limit);
         final List<OrderHdr> result = query.getResultList();
         return result;
+    }
+
+    @Override
+    public Integer countAll(){
+        final String sql = "SELECT COUNT(*) FROM order_hdr doc ";
+        final Query query = this.em.createNativeQuery(sql);
+        BigInteger countData = (BigInteger) query.getSingleResult();
+		Integer count = countData.intValue();
+		return count;
     }
     
 }

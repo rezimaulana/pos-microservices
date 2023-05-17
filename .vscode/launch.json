@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "FileServiceApplication",
-            "request": "launch",
-            "mainClass": "com.lawencon.fileservice.FileServiceApplication",
-            "projectName": "file-service"
-        },
-        {
-            "type": "java",
             "name": "RegistryServiceApplication",
             "request": "launch",
             "mainClass": "com.lawencon.registryservice.RegistryServiceApplication",
@@ -38,6 +31,13 @@
             "request": "launch",
             "mainClass": "com.lawencon.userservice.UserServiceApplication",
             "projectName": "user-service"
+        },
+        {
+            "type": "java",
+            "name": "FileServiceApplication",
+            "request": "launch",
+            "mainClass": "com.lawencon.fileservice.FileServiceApplication",
+            "projectName": "file-service"
         },
         {
             "type": "java",

@@ -1,5 +1,6 @@
 package com.lawencon.productservice.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,12 +41,21 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao{
     @SuppressWarnings("unchecked")
     @Override
     public List<Product> getAll(Integer page, Integer limit) {
-        final String sql = "SELECT * FROM products doc ";
+        final String sql = "SELECT * FROM products doc WHERE doc.is_active = true";
         final Query query = this.em.createNativeQuery(sql, Product.class);
         query.setFirstResult((page-1) * limit);
         query.setMaxResults(limit);
         final List<Product> result = query.getResultList();
         return result;
     }
+
+    @Override
+    public Integer countAll(){
+        final String sql = "SELECT COUNT(*) FROM products doc WHERE doc.is_active = true";
+        final Query query = this.em.createNativeQuery(sql);
+        BigInteger countData = (BigInteger) query.getSingleResult();
+		Integer count = countData.intValue();
+		return count;
+    }    
     
 }

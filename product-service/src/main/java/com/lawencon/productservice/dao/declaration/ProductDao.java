@@ -15,4 +15,6 @@ public interface ProductDao {
 
     public List<Product> getAll(Integer page, Integer limit);
 
+    public Integer countAll();
+
 }

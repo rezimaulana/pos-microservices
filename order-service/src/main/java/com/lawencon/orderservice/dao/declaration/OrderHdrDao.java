@@ -15,4 +15,6 @@ public interface OrderHdrDao {
 
     public List<OrderHdr> getAll(Integer page, Integer limit);
 
+    public Integer countAll();
+
 }
